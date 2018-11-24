@@ -15,6 +15,9 @@
 		F80776C521A4A81E00033973 /* AnimationTask2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776C421A4A81E00033973 /* AnimationTask2Tests.swift */; };
 		F80776D021A4A81E00033973 /* AnimationTask2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776CF21A4A81E00033973 /* AnimationTask2UITests.swift */; };
 		F80776E321A4A91F00033973 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776E221A4A91F00033973 /* Consts.swift */; };
+		F80776E621A5FE4000033973 /* PlanetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776E521A5FE4000033973 /* PlanetsView.swift */; };
+		F80776E921A6319500033973 /* Number+Angles.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776E821A6319500033973 /* Number+Angles.swift */; };
+		F80776EC21A7739800033973 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776EB21A7739800033973 /* Planet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		F80776CF21A4A81E00033973 /* AnimationTask2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTask2UITests.swift; sourceTree = "<group>"; };
 		F80776D121A4A81E00033973 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F80776E221A4A91F00033973 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		F80776E521A5FE4000033973 /* PlanetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanetsView.swift; sourceTree = "<group>"; };
+		F80776E821A6319500033973 /* Number+Angles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Angles.swift"; sourceTree = "<group>"; };
+		F80776EB21A7739800033973 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +107,10 @@
 			children = (
 				F80776DD21A4A87500033973 /* Constants */,
 				F80776DE21A4A87F00033973 /* Controllers */,
+				F80776E421A5BD8100033973 /* Views */,
+				F80776EA21A7738900033973 /* Models */,
 				F80776DF21A4A88800033973 /* Storyboards */,
+				F80776E721A6317700033973 /* Extensions */,
 				F80776E121A4A8B500033973 /* Other */,
 				F80776BB21A4A81D00033973 /* Info.plist */,
 			);
@@ -158,6 +167,30 @@
 				F80776B621A4A81D00033973 /* Assets.xcassets */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		F80776E421A5BD8100033973 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F80776E521A5FE4000033973 /* PlanetsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F80776E721A6317700033973 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F80776E821A6319500033973 /* Number+Angles.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F80776EA21A7738900033973 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F80776EB21A7739800033973 /* Planet.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +329,10 @@
 			files = (
 				F80776B221A4A81D00033973 /* ViewController.swift in Sources */,
 				F80776E321A4A91F00033973 /* Consts.swift in Sources */,
+				F80776E621A5FE4000033973 /* PlanetsView.swift in Sources */,
+				F80776EC21A7739800033973 /* Planet.swift in Sources */,
 				F80776B021A4A81D00033973 /* AppDelegate.swift in Sources */,
+				F80776E921A6319500033973 /* Number+Angles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
