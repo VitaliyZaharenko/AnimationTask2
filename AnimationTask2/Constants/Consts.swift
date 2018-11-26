@@ -10,5 +10,7 @@ import Foundation
 
 struct Consts {
     
+    static let carImage = "car"
+    
     
 }
