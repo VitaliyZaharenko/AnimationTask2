@@ -19,8 +19,8 @@ class RaceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.rightBarButtonItem = editButtonItem
+        raceView.delegate = self
     }
     
     //MARK: - Other
@@ -31,7 +31,15 @@ class RaceViewController: UIViewController {
         
     }
     
-    
+}
 
+//MARK: - RaceViewDelegate
+extension RaceViewController: RaceViewDelegate {
+    
+    var alertControllerContext: UIViewController {
+        get {
+            return self
+        }
+    }
 }
 

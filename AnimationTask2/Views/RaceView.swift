@@ -15,6 +15,11 @@ fileprivate struct Const {
     static let zoomSensivity: CGFloat = 0.1
     
     static let snapToPointDistance: Double = 50
+    
+    static let createNewSegmentAlertDialogTitle = "Select Segment Type"
+    static let createNewSegmentAlertDialogLineSegment = "Line"
+    static let createNewSegmentAlertDialogQubicCurveSegment = "Qubic Curve"
+    static let createNewSegmentAlertDialogCancel = "Cancel"
 }
 
 @IBDesignable
@@ -28,6 +33,8 @@ class RaceView: UIView {
     
     //MARK: - Prperties
     
+    weak var delegate: RaceViewDelegate?
+    
     var isEdited = false {
         didSet {
             updateEditState()
@@ -36,20 +43,20 @@ class RaceView: UIView {
     
     private var firstRun = true
     
-    private var editedSegmentIndex: Int?
-    private var editedSegnetSubindex: Int?
+    private var editedPointTuple: (Int, Int)?
     
     private var helperPath = UIBezierPath()
     private var tapRecognizer: UITapGestureRecognizer!
     private var pinchRecognizer: UIPinchGestureRecognizer!
     private var panRecognizer: UIPanGestureRecognizer!
+    private var longPressRecognizer: UILongPressGestureRecognizer!
+    
     private var track: RaceTrack! {
         didSet {
             self.carAnimation = createAnimation(from: track)
         }
     }
     private var trackPath: UIBezierPath!
-    
     private var carAnimation: CAKeyframeAnimation?
     
     private var zoomLevel = 1.0 {
@@ -105,6 +112,9 @@ class RaceView: UIView {
         
         panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanGesture(sender:)))
         self.addGestureRecognizer(panRecognizer)
+        
+        longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(sender:)))
+        self.addGestureRecognizer(longPressRecognizer)
         
     }
     
@@ -223,80 +233,59 @@ private extension RaceView{
         
         let touchPoint: CGPoint = panRecognizer.location(in: self)
         
+        let service = RaceTrackService(track: track)
+        
         switch panRecognizer.state{
         case .began:
-            var selectedIndex: Int? = nil
-            var selectedSubindex: Int? = nil
-            var minDistance: Double = Double.greatestFiniteMagnitude
-            for index in 0..<track.segments.count {
-                switch track.segments[index]{
-                case .line(from: let from, to: let to):
-                    let fromDistance = from.distance(to: touchPoint)
-                    let toDistance = to.distance(to: touchPoint)
-                    let min = Double.minimum(Double(fromDistance), Double(toDistance))
-                    if min < Const.snapToPointDistance && min < minDistance {
-                        selectedIndex = index
-                        minDistance = min
-                    }
-                case .qubicCurve(controlPoint1: let cp1, controlPoint2: let cp2, end: let end):
-                    let cp1Distance = cp1.distance(to: touchPoint)
-                    let cp2Distance = cp2.distance(to: touchPoint)
-                    let endDistance = end.distance(to: touchPoint)
-                    let (min, subindex): (CGFloat, Int) = [(cp1Distance, 0), (cp2Distance, 1), (endDistance, 2)].reduce((cp1Distance, 0), { res, currDistance in
-                        if res.0 < currDistance.0 {
-                            return res
-                        } else {
-                            return currDistance
-                        }
-                    })
-                    if Double(min) < Const.snapToPointDistance && Double(min) < minDistance {
-                        selectedIndex = index
-                        selectedSubindex = subindex
-                        minDistance = Double(min)
-                    }
-                }
-                self.editedSegmentIndex = selectedIndex
-                self.editedSegnetSubindex = selectedSubindex
-            }
+                self.editedPointTuple = service.hitTest(point: touchPoint)
         case .changed:
-            if let index = editedSegmentIndex, let subindex = editedSegnetSubindex {
-                switch track.segments[index]{
-                case .line(from: let from, to: let to):
-                    var newTrack = track!
-                    switch subindex {
-                    case 0:
-                        newTrack.segments[index] = .line(from: touchPoint, to: to)
-                    case 1:
-                        newTrack.segments[index] = .line(from: from, to: touchPoint)
-                    default:
-                        fatalError("Wrong index: \(subindex)")
-                    }
-                    self.track = newTrack
-                    setNeedsDisplay()
-                case .qubicCurve(controlPoint1: let cp1, controlPoint2: let cp2, end: let end):
-                    var newTrack = track!
-                    switch subindex {
-                    case 0:
-                        newTrack.segments[index] = .qubicCurve(controlPoint1: touchPoint, controlPoint2: cp2, end: end)
-                    case 1:
-                        newTrack.segments[index] = .qubicCurve(controlPoint1: cp1, controlPoint2: touchPoint, end: end)
-                    case 2:
-                        newTrack.segments[index] = .qubicCurve(controlPoint1: cp1, controlPoint2: cp2, end: touchPoint)
-                    default:
-                        fatalError("Wrong index: \(subindex)")
-                    }
-                    self.track = newTrack
-                    setNeedsDisplay()
+            if let editedPointTuple = self.editedPointTuple {
+                do {
+                    self.track = try service.changePoint(locationTuple: editedPointTuple, to: touchPoint)
+                } catch {
+                    fatalError(error.localizedDescription)
                 }
+                setNeedsDisplay()
             }
-            
         case .ended:
-            self.editedSegmentIndex = nil
-            self.editedSegnetSubindex = nil
+            self.editedPointTuple = nil
         default:
             return
         }
     }
+    
+    func showCreateNewSegmentDialog(point: CGPoint){
+        let alertController = UIAlertController(title: Const.createNewSegmentAlertDialogTitle, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: Const.createNewSegmentAlertDialogCancel, style: .cancel, handler: { _ in
+            alertController.dismiss(animated: true, completion: nil)
+        })
+        let createLine = UIAlertAction(title: Const.createNewSegmentAlertDialogLineSegment, style: .default, handler: { _ in
+            self.createLineSegment(to: point)
+        })
+        let createQubicCurve = UIAlertAction(title: Const.createNewSegmentAlertDialogQubicCurveSegment, style: .default, handler: { _ in
+            self.createQubicCurveSegment(to: point)
+        })
+        
+        alertController.addAction(createLine)
+        alertController.addAction(createQubicCurve)
+        alertController.addAction(cancelAction)
+        
+        
+        delegate?.alertControllerContext.present(alertController, animated: true, completion: nil)
+    }
+    
+    func createLineSegment(to point: CGPoint){
+        let service = RaceTrackService(track: track)
+        self.track = service.addLineSegment(point: point)
+        setNeedsDisplay()
+    }
+    
+    func createQubicCurveSegment(to point: CGPoint){
+        let service = RaceTrackService(track: track)
+        self.track = service.addCurveSegment(point: point)
+        setNeedsDisplay()
+    }
+    
 }
 
 //MARK: - Callbacks
@@ -314,6 +303,13 @@ private extension RaceView {
             if let animation = carAnimation {
                 carView.layer.add(animation, forKey: "animateCar")
             }
+        }
+    }
+    
+    @objc func onLongPress(sender: UILongPressGestureRecognizer){
+        
+        if isEdited {
+            showCreateNewSegmentDialog(point: sender.location(in: self))
         }
     }
     

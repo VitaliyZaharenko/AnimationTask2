@@ -19,6 +19,8 @@
 		F80776F221AA130300033973 /* RaceTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776F121AA130300033973 /* RaceTrack.swift */; };
 		F80776F421AA131B00033973 /* RaceSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776F321AA131B00033973 /* RaceSegment.swift */; };
 		F80776F721AB5C4700033973 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776F621AB5C4700033973 /* CGPoint.swift */; };
+		F80776F921AC618E00033973 /* RaceTrackService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776F821AC618E00033973 /* RaceTrackService.swift */; };
+		F80776FC21AC79CC00033973 /* RaceViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776FB21AC79CC00033973 /* RaceViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		F80776F121AA130300033973 /* RaceTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTrack.swift; sourceTree = "<group>"; };
 		F80776F321AA131B00033973 /* RaceSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceSegment.swift; sourceTree = "<group>"; };
 		F80776F621AB5C4700033973 /* CGPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		F80776F821AC618E00033973 /* RaceTrackService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceTrackService.swift; sourceTree = "<group>"; };
+		F80776FB21AC79CC00033973 /* RaceViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RaceViewDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 				F80776DE21A4A87F00033973 /* Controllers */,
 				F80776ED21A9BDC300033973 /* Views */,
 				F80776F021AA12EE00033973 /* Models */,
+				F80776FA21AC79AF00033973 /* Protocols */,
 				F80776DF21A4A88800033973 /* Storyboards */,
 				F80776F521AB5C2F00033973 /* Extensions */,
 				F80776E121A4A8B500033973 /* Other */,
@@ -184,6 +189,7 @@
 			children = (
 				F80776F121AA130300033973 /* RaceTrack.swift */,
 				F80776F321AA131B00033973 /* RaceSegment.swift */,
+				F80776F821AC618E00033973 /* RaceTrackService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -194,6 +200,14 @@
 				F80776F621AB5C4700033973 /* CGPoint.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F80776FA21AC79AF00033973 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F80776FB21AC79CC00033973 /* RaceViewDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,9 +346,11 @@
 			files = (
 				F80776B221A4A81D00033973 /* RaceViewController.swift in Sources */,
 				F80776F221AA130300033973 /* RaceTrack.swift in Sources */,
+				F80776F921AC618E00033973 /* RaceTrackService.swift in Sources */,
 				F80776E321A4A91F00033973 /* Consts.swift in Sources */,
 				F80776F721AB5C4700033973 /* CGPoint.swift in Sources */,
 				F80776B021A4A81D00033973 /* AppDelegate.swift in Sources */,
+				F80776FC21AC79CC00033973 /* RaceViewDelegate.swift in Sources */,
 				F80776F421AA131B00033973 /* RaceSegment.swift in Sources */,
 				F80776EF21A9C43300033973 /* RaceView.swift in Sources */,
 			);
