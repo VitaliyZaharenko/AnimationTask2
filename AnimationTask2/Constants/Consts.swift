@@ -10,5 +10,8 @@ import Foundation
 
 struct Consts {
     
+    struct Images {
+        static let paperBird = "paper-bird"
+    }
     
 }

@@ -1,0 +1,67 @@
+
+<svg width="39px" height="59px" viewBox="0 0 39 59" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 45.2 (43514) - http://www.bohemiancoding.com/sketch -->
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="garbage" transform="translate(0.000000, 1.000000)" fill-rule="nonzero">
+            <path d="M38.063,15.104 L0.433,9.815 L0.912,6.405 C1.109,5.007 2.401,4.032 3.8,4.229 L36.366,8.806 C37.764,9.003 38.739,10.295 38.542,11.694 L38.063,15.104 Z" id="Shape" fill="#556080"></path>
+            <path d="M14.141,5.683 L14.698,1.722 C14.851,0.633 15.868,-0.133 16.957,0.02 L24.879,1.133 C25.968,1.286 26.734,2.303 26.581,3.392 L26.024,7.353 L14.141,5.683 Z" id="Shape" stroke="#7383BF" stroke-width="2" fill="#FFFFFF" stroke-linecap="round"></path>
+            <path d="M2.597,19 L13.224,19 L13.567,18.657 L7.91,13 L2.509,18.401 C2.368,18.542 2.368,18.771 2.509,18.912 L2.597,19 Z" id="Shape" fill="#EBBA16"></path>
+            <rect id="Rectangle-path" fill="#DD352E" x="14.567" y="16" width="8" height="3"></rect>
+            <rect id="Rectangle-path" fill="#694F87" x="25.567" y="16" width="5" height="3"></rect>
+            <path d="M32.838,58 L4.297,58 C2.79,58 1.568,56.778 1.568,55.271 L1.568,19 L35.568,19 L35.568,55.271 C35.567,56.778 34.345,58 32.838,58 Z" id="Shape" fill="#556080"></path>
+            <g id="Group" transform="translate(5.000000, 23.000000)" fill="#7383BF">
+                <circle id="Oval" cx="1.567" cy="4" r="1"></circle>
+                <circle id="Oval" cx="1.567" cy="10" r="1"></circle>
+                <circle id="Oval" cx="4.567" cy="1" r="1"></circle>
+                <circle id="Oval" cx="10.567" cy="1" r="1"></circle>
+                <circle id="Oval" cx="4.567" cy="7" r="1"></circle>
+                <circle id="Oval" cx="10.567" cy="7" r="1"></circle>
+                <circle id="Oval" cx="7.567" cy="4" r="1"></circle>
+                <circle id="Oval" cx="13.567" cy="4" r="1"></circle>
+                <circle id="Oval" cx="7.567" cy="10" r="1"></circle>
+                <circle id="Oval" cx="13.567" cy="10" r="1"></circle>
+                <circle id="Oval" cx="16.567" cy="1" r="1"></circle>
+                <circle id="Oval" cx="22.567" cy="1" r="1"></circle>
+                <circle id="Oval" cx="16.567" cy="7" r="1"></circle>
+                <circle id="Oval" cx="22.567" cy="7" r="1"></circle>
+                <circle id="Oval" cx="19.567" cy="4" r="1"></circle>
+                <circle id="Oval" cx="25.567" cy="4" r="1"></circle>
+                <circle id="Oval" cx="19.567" cy="10" r="1"></circle>
+                <circle id="Oval" cx="25.567" cy="10" r="1"></circle>
+                <circle id="Oval" cx="1.567" cy="16" r="1"></circle>
+                <circle id="Oval" cx="1.567" cy="22" r="1"></circle>
+                <circle id="Oval" cx="4.567" cy="13" r="1"></circle>
+                <circle id="Oval" cx="10.567" cy="13" r="1"></circle>
+                <circle id="Oval" cx="4.567" cy="19" r="1"></circle>
+                <circle id="Oval" cx="10.567" cy="19" r="1"></circle>
+                <circle id="Oval" cx="7.567" cy="16" r="1"></circle>
+                <circle id="Oval" cx="13.567" cy="16" r="1"></circle>
+                <circle id="Oval" cx="7.567" cy="22" r="1"></circle>
+                <circle id="Oval" cx="13.567" cy="22" r="1"></circle>
+                <circle id="Oval" cx="16.567" cy="13" r="1"></circle>
+                <circle id="Oval" cx="22.567" cy="13" r="1"></circle>
+                <circle id="Oval" cx="16.567" cy="19" r="1"></circle>
+                <circle id="Oval" cx="22.567" cy="19" r="1"></circle>
+                <circle id="Oval" cx="19.567" cy="16" r="1"></circle>
+                <circle id="Oval" cx="25.567" cy="16" r="1"></circle>
+                <circle id="Oval" cx="19.567" cy="22" r="1"></circle>
+                <circle id="Oval" cx="25.567" cy="22" r="1"></circle>
+                <circle id="Oval" cx="1.567" cy="28" r="1"></circle>
+                <circle id="Oval" cx="4.567" cy="25" r="1"></circle>
+                <circle id="Oval" cx="10.567" cy="25" r="1"></circle>
+                <circle id="Oval" cx="4.567" cy="31" r="1"></circle>
+                <circle id="Oval" cx="10.567" cy="31" r="1"></circle>
+                <circle id="Oval" cx="7.567" cy="28" r="1"></circle>
+                <circle id="Oval" cx="13.567" cy="28" r="1"></circle>
+                <circle id="Oval" cx="16.567" cy="25" r="1"></circle>
+                <circle id="Oval" cx="22.567" cy="25" r="1"></circle>
+                <circle id="Oval" cx="16.567" cy="31" r="1"></circle>
+                <circle id="Oval" cx="22.567" cy="31" r="1"></circle>
+                <circle id="Oval" cx="19.567" cy="28" r="1"></circle>
+                <circle id="Oval" cx="25.567" cy="28" r="1"></circle>
+            </g>
+        </g>
+    </g>
+</svg>
