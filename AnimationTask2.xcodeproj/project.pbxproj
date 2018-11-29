@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		F80776B021A4A81D00033973 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776AF21A4A81D00033973 /* AppDelegate.swift */; };
-		F80776B221A4A81D00033973 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776B121A4A81D00033973 /* ViewController.swift */; };
+		F80776B221A4A81D00033973 /* JalousieAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776B121A4A81D00033973 /* JalousieAnimationViewController.swift */; };
 		F80776B521A4A81D00033973 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80776B321A4A81D00033973 /* Main.storyboard */; };
 		F80776B721A4A81D00033973 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F80776B621A4A81D00033973 /* Assets.xcassets */; };
 		F80776BA21A4A81D00033973 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80776B821A4A81D00033973 /* LaunchScreen.storyboard */; };
 		F80776C521A4A81E00033973 /* AnimationTask2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776C421A4A81E00033973 /* AnimationTask2Tests.swift */; };
 		F80776D021A4A81E00033973 /* AnimationTask2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776CF21A4A81E00033973 /* AnimationTask2UITests.swift */; };
 		F80776E321A4A91F00033973 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776E221A4A91F00033973 /* Consts.swift */; };
+		F807770221B08E7300033973 /* TileAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807770121B08E7300033973 /* TileAnimationDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,7 @@
 /* Begin PBXFileReference section */
 		F80776AC21A4A81D00033973 /* AnimationTask2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationTask2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F80776AF21A4A81D00033973 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F80776B121A4A81D00033973 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F80776B121A4A81D00033973 /* JalousieAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JalousieAnimationViewController.swift; sourceTree = "<group>"; };
 		F80776B421A4A81D00033973 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F80776B621A4A81D00033973 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F80776B921A4A81D00033973 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		F80776CF21A4A81E00033973 /* AnimationTask2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTask2UITests.swift; sourceTree = "<group>"; };
 		F80776D121A4A81E00033973 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F80776E221A4A91F00033973 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
+		F807770121B08E7300033973 /* TileAnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileAnimationDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				F80776DD21A4A87500033973 /* Constants */,
 				F80776DE21A4A87F00033973 /* Controllers */,
 				F80776DF21A4A88800033973 /* Storyboards */,
+				F807770021B08E4800033973 /* Protocols */,
 				F80776E121A4A8B500033973 /* Other */,
 				F80776BB21A4A81D00033973 /* Info.plist */,
 			);
@@ -137,7 +140,7 @@
 		F80776DE21A4A87F00033973 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				F80776B121A4A81D00033973 /* ViewController.swift */,
+				F80776B121A4A81D00033973 /* JalousieAnimationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,6 +161,14 @@
 				F80776B621A4A81D00033973 /* Assets.xcassets */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		F807770021B08E4800033973 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F807770121B08E7300033973 /* TileAnimationDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,9 +305,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F80776B221A4A81D00033973 /* ViewController.swift in Sources */,
+				F80776B221A4A81D00033973 /* JalousieAnimationViewController.swift in Sources */,
 				F80776E321A4A91F00033973 /* Consts.swift in Sources */,
 				F80776B021A4A81D00033973 /* AppDelegate.swift in Sources */,
+				F807770221B08E7300033973 /* TileAnimationDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
