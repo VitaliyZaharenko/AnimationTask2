@@ -10,5 +10,13 @@ import Foundation
 
 struct Consts {
     
+    struct Controllers {
+        
+        struct JalousieAniamtion {
+            
+            static let storyboardName = "JalousieAnimation"
+            static let storyboardId = "JalousieAnimationControllerId"
+        }
+    }
     
 }

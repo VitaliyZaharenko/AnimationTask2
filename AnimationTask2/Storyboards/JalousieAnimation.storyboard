@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uPJ-P9-hLh">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Jalousie Animation View Controller-->
+        <scene sceneID="JDn-9A-wUC">
+            <objects>
+                <viewController storyboardIdentifier="JalousieAnimationControllerId" id="uPJ-P9-hLh" customClass="JalousieAnimationViewController" customModule="AnimationTask2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YfH-F0-PbO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ph4-lP-VCN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" red="0.59985377210000002" green="0.13993353680000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ph4-lP-VCN" firstAttribute="leading" secondItem="cy0-5v-473" secondAttribute="leading" id="7da-kL-hDC"/>
+                            <constraint firstItem="ph4-lP-VCN" firstAttribute="top" secondItem="cy0-5v-473" secondAttribute="top" id="7eP-LG-BUf"/>
+                            <constraint firstItem="cy0-5v-473" firstAttribute="bottom" secondItem="ph4-lP-VCN" secondAttribute="bottom" id="UJX-KX-9vp"/>
+                            <constraint firstItem="cy0-5v-473" firstAttribute="trailing" secondItem="ph4-lP-VCN" secondAttribute="trailing" id="xqa-bK-0kL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cy0-5v-473"/>
+                    </view>
+                    <connections>
+                        <outlet property="animationView" destination="ph4-lP-VCN" id="hUk-Ww-gcL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QGW-r2-kxh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1239" y="-190"/>
+        </scene>
+    </scenes>
+</document>

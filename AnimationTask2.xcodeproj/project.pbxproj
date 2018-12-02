@@ -16,6 +16,7 @@
 		F80776D021A4A81E00033973 /* AnimationTask2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776CF21A4A81E00033973 /* AnimationTask2UITests.swift */; };
 		F80776E321A4A91F00033973 /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80776E221A4A91F00033973 /* Consts.swift */; };
 		F807770221B08E7300033973 /* TileAnimationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F807770121B08E7300033973 /* TileAnimationDelegate.swift */; };
+		F8FD6DED21B40D2E003C10DC /* JalousieAnimation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8FD6DEC21B40D2E003C10DC /* JalousieAnimation.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		F80776D121A4A81E00033973 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F80776E221A4A91F00033973 /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 		F807770121B08E7300033973 /* TileAnimationDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileAnimationDelegate.swift; sourceTree = "<group>"; };
+		F8FD6DEC21B40D2E003C10DC /* JalousieAnimation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JalousieAnimation.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 			children = (
 				F80776B821A4A81D00033973 /* LaunchScreen.storyboard */,
 				F80776B321A4A81D00033973 /* Main.storyboard */,
+				F8FD6DEC21B40D2E003C10DC /* JalousieAnimation.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				F80776BA21A4A81D00033973 /* LaunchScreen.storyboard in Resources */,
 				F80776B721A4A81D00033973 /* Assets.xcassets in Resources */,
 				F80776B521A4A81D00033973 /* Main.storyboard in Resources */,
+				F8FD6DED21B40D2E003C10DC /* JalousieAnimation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

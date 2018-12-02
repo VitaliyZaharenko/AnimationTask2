@@ -207,10 +207,12 @@ extension JalousieAnimationViewController: TileAnimationDelegate {
             }
             
             func animationDidStart(_ anim: CAAnimation) {
-                layer?.transform = transform
+                //layer?.transform = transform
             }
             
             func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+                layer?.actions = ["transform": NSNull()]
+                layer?.transform = transform
                 layer = nil
             }
         }
