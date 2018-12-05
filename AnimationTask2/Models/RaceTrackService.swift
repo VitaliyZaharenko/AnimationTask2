@@ -120,10 +120,19 @@ class RaceTrackService {
         return track
     }
     
-}
-
-//MARK: - Private Helper Methods
-private extension RaceTrackService {
+    func firstPoint() -> CGPoint? {
+        if track.segments.isEmpty {
+            return nil
+        } else {
+            switch track.segments.first! {
+            case .line(from: let from, to: _):
+                return from
+            case .qubicCurve(controlPoint1: _, controlPoint2: _, end: let end):
+                return nil
+            }
+        }
+    }
+    
     func lastPoint() -> CGPoint? {
         if track.segments.isEmpty {
             return nil
@@ -136,6 +145,11 @@ private extension RaceTrackService {
             }
         }
     }
+    
+}
+
+//MARK: - Private Helper Methods
+private extension RaceTrackService {
     
     func pointOnLine(start: CGPoint, end: CGPoint, parameter t: CGFloat) -> CGPoint {
         if t < 0 || t > 1 {

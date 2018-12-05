@@ -11,8 +11,13 @@ import UIKit
 fileprivate struct Const {
     static let controlPointRadius: CGFloat = 6
     static let curveControlPointColor = UIColor.purple
+    static let curveControlPointConnectionColor = UIColor.gray
     static let trackControlPoint = UIColor.cyan
-    static let zoomSensivity: CGFloat = 0.1
+    
+    static let roadColor = UIColor.black
+    static let roadLineWidth: CGFloat = 8
+    static let dashedPathColor = UIColor.white
+    static let dashedPathDashPattern: [CGFloat] = [5]
     
     static let snapToPointDistance: Double = 50
     
@@ -28,7 +33,6 @@ class RaceView: UIView {
     //MARK: - Views
     
     private var carView: UIImageView!
-    private var resetZoomButton: UIButton!
     
     
     //MARK: - Prperties
@@ -47,7 +51,6 @@ class RaceView: UIView {
     
     private var helperPath = UIBezierPath()
     private var tapRecognizer: UITapGestureRecognizer!
-    private var pinchRecognizer: UIPinchGestureRecognizer!
     private var panRecognizer: UIPanGestureRecognizer!
     private var longPressRecognizer: UILongPressGestureRecognizer!
     
@@ -58,12 +61,6 @@ class RaceView: UIView {
     }
     private var trackPath: UIBezierPath!
     private var carAnimation: CAKeyframeAnimation?
-    
-    private var zoomLevel = 1.0 {
-        didSet {
-            self.layer.transform = CATransform3DScale(self.layer.transform, CGFloat(zoomLevel), CGFloat(zoomLevel), CGFloat(zoomLevel))
-        }
-    }
     
     //MARK: - Initialization
     
@@ -79,36 +76,59 @@ class RaceView: UIView {
     
     
     private func commonInit(){
-        carView = UIImageView(image: UIImage(named: Consts.carImage))
-        carView.center = CGPoint(x: 100, y: 100)
-        self.addSubview(carView)
         configureGestureRecognizers()
+        carView = UIImageView(image: UIImage(named: Consts.carImage))
+        self.addSubview(carView)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         createTrack()
-        trackPath = createPathFrom(track: track)
-        configureZoomButton()
+        let serivce = RaceTrackService(track: track)
+        if let firstPoint = serivce.firstPoint() {
+            carView.center = firstPoint
+        } else {
+            carView.center = CGPoint(x: 100, y: 100)
+        }
         
+        trackPath = createPathFrom(track: track)
     }
     
     private func createTrack(){
         
-        let point1 = CGPoint(x: bounds.origin.x + 10, y: bounds.origin.y + 10)
-        let point2 = CGPoint(x: bounds.size.width - 10, y: bounds.origin.y + 10)
-        let point3 = CGPoint(x: bounds.origin.x + 10, y: bounds.size.height - 10)
-        let controlPoint1 = CGPoint(x: 100, y: 100)
-        let controlPoint2 = CGPoint(x: 150, y: 250)
-        let firstSegment: RaceSegment = .line(from: point1, to: point2)
-        let secondSegment: RaceSegment = .qubicCurve(controlPoint1: controlPoint1,
-                                                     controlPoint2: controlPoint2,
-                                                     end: point3)
-        track = RaceTrack(segments: [firstSegment, secondSegment])
+        let sg1point1 = CGPoint(x: bounds.origin.x + 50, y: bounds.origin.y + 50)
+        let sg1point2 = CGPoint(x: sg1point1.x + 100, y: bounds.origin.y + 50)
+        let sg2Cp1 = CGPoint(x: bounds.origin.x + bounds.size.width / 2 - 40, y: frame.origin.y + 25)
+        let sg2Cp2 = CGPoint(x: bounds.origin.x + bounds.size.width / 2, y: frame.origin.y + 10)
+        let sg2end = CGPoint(x: frame.size.width * 0.7, y: frame.origin.y + 64)
+        let sg3Cp1 = CGPoint(x: frame.size.width * 0.85, y: frame.size.height * 0.7)
+        let sg3Cp2 = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.3)
+        let sg3end = CGPoint(x: frame.size.width * 0.6, y: frame.size.height * 0.8)
+        let sg4Cp1 = CGPoint(x: frame.size.width * 0.75, y: frame.size.height * 0.95)
+        let sg4Cp2 = CGPoint(x: frame.size.width * 0.4, y: frame.size.height * 0.98)
+        let sg4end = CGPoint(x: frame.size.width * 0.28, y: frame.size.height * 0.88)
+        let sg5point1 = CGPoint(x: frame.size.width * 0.28, y: frame.size.height * 0.88)
+        let sg5point2 = CGPoint(x: frame.size.width * 0.15, y: frame.size.height * 0.4)
+        let sg6point1 = CGPoint(x: frame.size.width * 0.15, y: frame.size.height * 0.4)
+        let sg6point2 = sg1point1
+        let firstSegment: RaceSegment = .line(from: sg1point1, to: sg1point2)
+        let secondSegment: RaceSegment = .qubicCurve(controlPoint1: sg2Cp1,
+                                                     controlPoint2: sg2Cp2,
+                                                     end: sg2end)
+        let thirdSegment: RaceSegment = .qubicCurve(controlPoint1: sg3Cp1,
+                                                    controlPoint2: sg3Cp2,
+                                                    end: sg3end)
+        let fourthSegment: RaceSegment = .qubicCurve(controlPoint1: sg4Cp1,
+                                                     controlPoint2: sg4Cp2,
+                                                     end: sg4end)
+        let fifthSegment: RaceSegment = .line(from: sg5point1, to: sg5point2)
+        let sixthSegment: RaceSegment = .line(from: sg6point1, to: sg6point2)
+        track = RaceTrack(segments: [firstSegment, secondSegment, thirdSegment, fourthSegment, fifthSegment, sixthSegment])
     }
     
     private func configureGestureRecognizers(){
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTap(sender:)))
         self.addGestureRecognizer(tapRecognizer)
-        
-        pinchRecognizer = UIPinchGestureRecognizer(target: self, action: #selector(zoomChanged(sender:)))
-        self.addGestureRecognizer(pinchRecognizer)
         
         panRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPanGesture(sender:)))
         self.addGestureRecognizer(panRecognizer)
@@ -118,31 +138,21 @@ class RaceView: UIView {
         
     }
     
-    private func configureZoomButton(){
-        resetZoomButton = UIButton()
-        resetZoomButton.backgroundColor = UIColor.blue
-        self.addSubview(resetZoomButton)
-        resetZoomButton.addTarget(self, action: #selector(resetZoomClicked), for: .touchUpInside)
-        resetZoomButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addConstraints([
-            NSLayoutConstraint(item: resetZoomButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .width, multiplier: 1.0, constant: 50),
-            NSLayoutConstraint(item: resetZoomButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 50),
-            NSLayoutConstraint(item: resetZoomButton, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -20),
-            NSLayoutConstraint(item: resetZoomButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 20)
-            ])
-    }
     
     //MARK: - Draw related
 
     override func draw(_ rect: CGRect) {
-        if firstRun {
-            createTrack()
-            firstRun = false
-        }
         
-        let path = createPathFrom(track: track)
-        UIColor.red.setStroke()
-        path.stroke()
+        let dashedPath = createPathFrom(track: track)
+        let road = createPathFrom(track: track)
+        
+        Const.roadColor.setStroke()
+        road.lineWidth = Const.roadLineWidth
+        road.stroke()
+        
+        Const.dashedPathColor.setStroke()
+        dashedPath.setLineDash(Const.dashedPathDashPattern, count: Const.dashedPathDashPattern.count, phase: 0.0)
+        dashedPath.stroke()
         
         if isEdited {
             drawControlPoints(track: track)
@@ -152,44 +162,53 @@ class RaceView: UIView {
     
     private func drawControlPoints(track: RaceTrack){
         
-        var nodePoints = [CGPoint]()
-        var controlPoints = [CGPoint]()
-        
+        var lastPoint: CGPoint = CGPoint(x: 0, y: 0)
         for segment in track.segments {
             switch segment {
             case .line(from: let from, to: let to):
-                nodePoints.append(contentsOf: [from, to])
+                drawNodePoint(point: from)
+                drawNodePoint(point: to)
+                lastPoint = to
             case .qubicCurve(controlPoint1: let cp1, controlPoint2: let cp2, end: let end):
-                nodePoints.append(end)
-                controlPoints.append(contentsOf: [cp1, cp2])
+                drawConnection(poin1: lastPoint, point2: cp1)
+                drawConnection(poin1: cp1, point2: cp2)
+                drawConnection(poin1: cp2, point2: end)
+                drawControlPoint(point: cp1)
+                drawControlPoint(point: cp2)
+                drawNodePoint(point: end)
+                lastPoint = end
             }
         }
-        
-        let nodeRects = nodePoints.map { (point) -> CGRect in
-            return CGRect(x: point.x - Const.controlPointRadius,
-                          y: point.y - Const.controlPointRadius,
-                          width: Const.controlPointRadius * 2,
-                          height: Const.controlPointRadius * 2)
-        }
-        
-        let controlPointsRects = controlPoints.map { (point) -> CGRect in
-            return CGRect(x: point.x - Const.controlPointRadius,
-                          y: point.y - Const.controlPointRadius,
-                          width: Const.controlPointRadius * 2,
-                          height: Const.controlPointRadius * 2)
-        }
-        
+    }
+    
+    private func drawNodePoint(point: CGPoint) {
+        let pointRect = CGRect(x: point.x - Const.controlPointRadius,
+                               y: point.y - Const.controlPointRadius,
+                               width: Const.controlPointRadius * 2,
+                               height: Const.controlPointRadius * 2)
         Const.trackControlPoint.setFill()
-        for nodeRect in nodeRects {
-            let path = UIBezierPath(ovalIn: nodeRect)
-            path.fill()
-        }
+        let path = UIBezierPath(ovalIn: pointRect)
+        path.fill()
+    }
+    
+    private func drawControlPoint(point: CGPoint) {
+        let pointRect = CGRect(x: point.x - Const.controlPointRadius,
+                               y: point.y - Const.controlPointRadius,
+                               width: Const.controlPointRadius * 2,
+                               height: Const.controlPointRadius * 2)
         Const.curveControlPointColor.setFill()
-        for controlPointRect in controlPointsRects {
-            let path = UIBezierPath(ovalIn: controlPointRect)
-            path.fill()
-        }
-        
+        let path = UIBezierPath(ovalIn: pointRect)
+        path.fill()
+    }
+    
+    private func drawConnection(poin1: CGPoint, point2: CGPoint){
+        let path = UIBezierPath()
+        path.move(to: poin1)
+        path.addLine(to: point2)
+        let dashes: [CGFloat] = [10.0]
+        path.setLineDash(dashes, count: dashes.count, phase: 0.0)
+        Const.curveControlPointConnectionColor.setStroke()
+        path.stroke()
     }
 
 }
@@ -311,15 +330,5 @@ private extension RaceView {
         if isEdited {
             showCreateNewSegmentDialog(point: sender.location(in: self))
         }
-    }
-    
-    @objc func resetZoomClicked(){
-        zoomLevel = 1.0
-    }
-    
-    @objc func zoomChanged(sender: UIPinchGestureRecognizer){
-        zoomLevel = Double(sender.scale)
-        print("\(sender.scale)")
-        //sender.scale = 1.0
     }
 }
