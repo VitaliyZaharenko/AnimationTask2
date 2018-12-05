@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Bvv-FD-6tI">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Trash Can View Controller-->
+        <scene sceneID="fJs-rv-ZWq">
+            <objects>
+                <viewController storyboardIdentifier="TrashCanViewControllerId" id="Bvv-FD-6tI" customClass="TrashCanViewController" customModule="AnimationTask2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j3E-ht-tHP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gA0-lI-L6C">
+                                <rect key="frame" x="140" y="35" width="94" height="30"/>
+                                <state key="normal" title="Move to trash"/>
+                                <connections>
+                                    <action selector="moveToTrash:" destination="Bvv-FD-6tI" eventType="touchUpInside" id="i6I-7f-Ema"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="garbage" translatesAutoresizingMaskIntoConstraints="NO" id="a0q-tZ-MvJ">
+                                <rect key="frame" x="15" y="602" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8Un-zD-HKm"/>
+                                    <constraint firstAttribute="width" constant="50" id="JOe-Uo-fBY"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="gA0-lI-L6C" firstAttribute="top" secondItem="C1t-jO-c92" secondAttribute="top" constant="15" id="OPH-pJ-OgN"/>
+                            <constraint firstItem="gA0-lI-L6C" firstAttribute="centerX" secondItem="j3E-ht-tHP" secondAttribute="centerX" id="fxb-r4-a2B"/>
+                            <constraint firstItem="a0q-tZ-MvJ" firstAttribute="leading" secondItem="C1t-jO-c92" secondAttribute="leading" constant="15" id="hmC-t6-p9w"/>
+                            <constraint firstItem="C1t-jO-c92" firstAttribute="bottom" secondItem="a0q-tZ-MvJ" secondAttribute="bottom" constant="15" id="p7w-N9-OXS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C1t-jO-c92"/>
+                    </view>
+                    <connections>
+                        <outlet property="moveToTrashButton" destination="gA0-lI-L6C" id="Qxd-1v-Ocy"/>
+                        <outlet property="trashCanImageView" destination="a0q-tZ-MvJ" id="LBB-IQ-UXd"/>
+                        <outlet property="trashCanLeftConstraint" destination="hmC-t6-p9w" id="pHs-YU-leN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v2o-ec-AiH" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="garbage" width="40" height="61"/>
+    </resources>
+</document>

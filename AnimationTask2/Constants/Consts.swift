@@ -14,4 +14,9 @@ struct Consts {
         static let paperBird = "paper-bird"
     }
     
+    struct Controllers {
+        static let storyboardName = "TrashCan"
+        static let storyboardId = "TrashCanViewControllerId"
+    }
+    
 }
