@@ -9,6 +9,14 @@
 import Foundation
 
 struct Consts {
+ 
     
+    struct Controllers {
+        
+        struct CreepingLine {
+            static let storyboardName = "CreepingLine"
+            static let storyboardId = "CreepingLineViewControllerId"
+        }
+    }
     
 }

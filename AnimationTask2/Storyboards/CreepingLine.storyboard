@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C48-x2-54f">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Creeping Line View Controller-->
+        <scene sceneID="Lau-ci-Afg">
+            <objects>
+                <viewController storyboardIdentifier="CreepingLineViewControllerId" id="C48-x2-54f" customClass="CreepingLineViewController" customModule="AnimationTask2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aG4-hd-RfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some not very long text" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="12c-gn-2QR">
+                                <rect key="frame" x="96.5" y="123" width="181.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3B-sx-gYE">
+                                <rect key="frame" x="133.5" y="318" width="107" height="30"/>
+                                <state key="normal" title="Start Animation"/>
+                                <connections>
+                                    <action selector="toggleAnimation:" destination="C48-x2-54f" eventType="touchUpInside" id="q6d-4i-Sfv"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="s94-ht-JIM">
+                                <rect key="frame" x="141" y="275" width="93" height="29"/>
+                                <segments>
+                                    <segment title="Left"/>
+                                    <segment title="Right"/>
+                                </segments>
+                                <connections>
+                                    <action selector="directionChanged:" destination="C48-x2-54f" eventType="valueChanged" id="uBv-Up-iZt"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="v3B-sx-gYE" firstAttribute="centerX" secondItem="aG4-hd-RfQ" secondAttribute="centerX" id="E5n-7q-gsk"/>
+                            <constraint firstItem="s94-ht-JIM" firstAttribute="centerX" secondItem="aG4-hd-RfQ" secondAttribute="centerX" id="EPd-U5-Hn7"/>
+                            <constraint firstItem="12c-gn-2QR" firstAttribute="centerX" secondItem="aG4-hd-RfQ" secondAttribute="centerX" id="Ilz-UH-kxr"/>
+                            <constraint firstItem="v3B-sx-gYE" firstAttribute="centerY" secondItem="aG4-hd-RfQ" secondAttribute="centerY" id="MZj-if-Aa6"/>
+                            <constraint firstItem="v3B-sx-gYE" firstAttribute="top" secondItem="s94-ht-JIM" secondAttribute="bottom" constant="15" id="nUp-SO-3gS"/>
+                            <constraint firstItem="12c-gn-2QR" firstAttribute="centerY" secondItem="aG4-hd-RfQ" secondAttribute="centerY" constant="-200" id="xh7-ju-Jhe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="A9N-Oz-b85"/>
+                    </view>
+                    <connections>
+                        <outlet property="creepingLineLabel" destination="12c-gn-2QR" id="fId-bY-Gkb"/>
+                        <outlet property="directionSegmentedControl" destination="s94-ht-JIM" id="Usa-Ie-kOn"/>
+                        <outlet property="toggleAnimationButton" destination="v3B-sx-gYE" id="Dyb-sN-ogi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CMF-8a-Q3R" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
