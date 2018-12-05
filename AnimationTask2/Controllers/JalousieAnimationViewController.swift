@@ -12,6 +12,8 @@ fileprivate struct Const {
     
     static let rotateDuraion = 3.0
     static let defaultDelay = 0.1
+    
+    static let perspectiveRatio: CGFloat = 1 / -500
 }
 
 class JalousieAnimationViewController: UIViewController {
@@ -59,11 +61,6 @@ class JalousieAnimationViewController: UIViewController {
         layers.forEach({ layer in animationView.layer.addSublayer(layer) })
         
     }
-    
-    //MARK: - Actions
-    
-    
-
 }
 
 //MARK: - Private Helper Methods
@@ -117,7 +114,8 @@ private extension JalousieAnimationViewController {
         for row in 0..<rows {
             for column in 0..<columns {
                 let index = indexFrom(row: row, column: column)
-                let toTransform = CATransform3DRotate(layers[index].transform, 3.14 / 2, 1.0, 0, 0)
+                var toTransform = CATransform3DRotate(layers[index].transform, 3.14 / 2, 1.0, 0, 0)
+                toTransform.m34 = Const.perspectiveRatio
                 let animation: CAAnimation = createRotateAnimation(from: layers[index].transform, to: toTransform)
                 animation.beginTime = CACurrentMediaTime() + Double(index) * Const.defaultDelay
                 animation.delegate = CompletionAnimationDelegate(row: row, column: column, delegate: self)
@@ -156,11 +154,13 @@ private extension JalousieAnimationViewController {
     }
     
     func createLayers(withImage image: UIImage?, transform: CATransform3D = CATransform3DIdentity) -> [CALayer] {
+        var layerTransform = transform
+        layerTransform.m34 = Const.perspectiveRatio
         var layers = [CALayer?](repeating: nil, count: rows * columns)
         for row in 0..<rows {
             for column in 0..<columns {
                 let index = indexFrom(row: row, column: column)
-                layers[index] = createLayer(withImage: image, transform: transform, row: row, column: column)
+                layers[index] = createLayer(withImage: image, transform: layerTransform, row: row, column: column)
             }
         }
         
@@ -175,8 +175,8 @@ private extension JalousieAnimationViewController {
         layer.transform = transform
         layer.contentsRect = contentRects[index]
         layer.frame = frameRects[index]
-        layer.borderColor = UIColor.red.cgColor
-        layer.borderWidth = 3
+        //layer.borderColor = UIColor.red.cgColor
+        //layer.borderWidth = 3
         return layer
     }
 }
@@ -217,18 +217,27 @@ extension JalousieAnimationViewController: TileAnimationDelegate {
             }
         }
         
+        
         let index = indexFrom(row: row, column: column)
         layers[index].removeFromSuperlayer()
         
+        var resultTransform = CATransform3DIdentity
+        resultTransform.m34 = Const.perspectiveRatio
         
-        let resultTransform = CATransform3DIdentity
-        let transform = CATransform3DRotate(resultTransform, -(3.14 / 2), 1, 0, 0)
+        var transform = CATransform3DRotate(resultTransform, -(3.14 / 2), 1, 0, 0)
+        transform.m34 = Const.perspectiveRatio
         let newLayer = createLayer(withImage: secondImage, transform: transform, row: row, column: column)
         layers[index] = newLayer
         animationView.layer.addSublayer(newLayer)
         let animation = createRotateAnimation(from: transform, to: resultTransform)
         animation.delegate = CompletionAnimationDelegate(layer: newLayer, resultTransform: resultTransform)
         newLayer.add(animation, forKey: "completeRotation\(index)")
+    
+        if index == layers.count - 1 {
+            let first = image
+            image = secondImage
+            secondImage = first
+        }
     }
 }
 
