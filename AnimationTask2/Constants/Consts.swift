@@ -12,5 +12,12 @@ struct Consts {
     
     static let carImage = "car"
     
+    struct Controllers {
+        
+        struct RaceView {
+            static let storyboardName = "Race"
+            static let storyboardId = "RaceViewControllerId"
+        }
+    }
     
 }
