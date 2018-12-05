@@ -127,7 +127,7 @@ class RaceTrackService {
             switch track.segments.first! {
             case .line(from: let from, to: _):
                 return from
-            case .qubicCurve(controlPoint1: _, controlPoint2: _, end: let end):
+            case .qubicCurve(controlPoint1: _, controlPoint2: _, end: _):
                 return nil
             }
         }
